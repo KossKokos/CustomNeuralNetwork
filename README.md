@@ -2,7 +2,7 @@
   
   I succesfully implemented `Neural Network` from Scratch using only __NumPy__.
   __NumPy__ was used only for matrix manipulations and some computations, all actual network's logic was built using __plain python__. 
-  The goal of the project was to deeply understand how neural networks work under the hood, and I actually understood a concept
+  The goal of the project was to deeply understand how neural networks work under the hood, and I understood a concept
   of _back propagation_ with it.
 
 ## Overview
@@ -19,6 +19,8 @@
   * Tanh
 * Trained the model using gradient descent and mini-batches
 * Compared model's predictions with official tensorflow.keras.Sequential model
+* Compared how training went for both models with loss curves.
+* Compared MAE on test data for both models.
 
 ## Dataset & Comparison
 
@@ -27,19 +29,20 @@
 
   To make sure my model actually works, I decided to compare it with official `tensorflow.keras` model using same data and parameters
 
-  I used MSE metric for loss function and used it as metric of accuracy, the lower the loss - the better the model is :D.
+  I used MSE metric for loss function and used MAE as metric of accuracy on test data.
   
-  Last losses on the train data:
-  * Custom Model: 0.020
-  * Keras Model: 0.0256
+  MAEs for both models on test data:
+  - **Custom Neural Network MAE:** 0.2352
+  - **Keras Neural Network MAE:** 0.1526
 
-  The results are very close, which shows that the custom neural network works correctly for regression tasks.
+  Real error value on average for both models:
+  - **Custom Neural Network MAE on the original price scale:** $18,814.24
+  - **Keras Neural Network MAE on the original price scale:** $12,206.21
 
-  I decided to visualise our custom neural network's predictions and actual data on the same plot to see differences in predictions. I used _test data_ that model hasn't seen yet, and I would say the model has quite high variance, but overall predictions aren't that bad   
+  The custom model produced a higher error on unseen data. This suggests that the custom model has higher variance and does not generalise as well as the Keras implementation.
 
-![The scatter plot which Annual Salary data at x axis and Car Purchase Amount data at y axis; Blue points represent actual data, red points represent predictions](Actual_Custom.png)
+  The result does not prove that the custom network is ready for real price prediction. It shows that the implementation can learn a regression task, while also showing where it needs improvement.
 
-P.S. Check notebook to see _keras' predictions_
 
 ## Key Takeaways
 
